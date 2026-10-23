@@ -1,0 +1,15 @@
+{
+  "name": "event-log-analyzer",
+  "version": "1.0.0",
+  "description": "Построчный анализатор журналов событий с CLI и веб-панелью",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node src/cli.js",
+    "web": "node web/server.js",
+    "test": "c8 --all --include=src --exclude=src/cli.js --exclude=web/** --reporter=text --reporter=html --reporter=lcov node --test",
+    "test:unit": "node --test"
+  },
+  "engines": { "node": ">=20" },
+  "devDependencies": { "c8": "^10.1.3" }
+}

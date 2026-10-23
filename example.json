@@ -1,0 +1,11 @@
+{ "userId": 10245, 
+"username": "ivan_petrov", 
+"isActive": true, 
+"roles": [ "editor", "moderator" ], 
+"profile": { "firstName": "Иван", "lastName": "Петров", 
+"email": "ivan.petrov@example.com", 
+"age": 34, 
+"languages": [ "ru", "en" ] }, 
+"lastLogin": "2025-10-23T14:30:15Z",
+ "preferences": null 
+}

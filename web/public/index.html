@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Анализатор журналов</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+  <script defer src="index.js"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-mark">E</span><span>Event<span class="accent">Scope</span><small>LOG INTELLIGENCE</small></span></div>
+    <div class="nav-label">РАБОЧЕЕ ПРОСТРАНСТВО</div>
+    <a class="nav active" href="#"><span>▦</span> Обзор</a>
+    <a class="nav" href="#events"><span>≋</span> События</a>
+    <a class="nav" href="#errors"><span>⚑</span> Ошибки</a>
+    <div class="sidebar-bottom"><div class="status-dot"></div><div><b>Локальная обработка</b><small>Файлы остаются на вашем ПК</small></div></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><div class="eyebrow">МОНИТОРИНГ / ЖУРНАЛЫ</div><h1>Анализ событий</h1><p>Сводка по компонентам и частым ошибкам</p></div><div class="header-right"><span class="live"><i></i> Система готова</span><label class="upload-btn">Загрузить JSON-отчёт<input id="reportFile" type="file" accept=".json,application/json"></label></div></header>
+    <section class="empty-state" id="emptyState"><div class="empty-icon">↥</div><h2>Загрузите отчёт анализатора</h2><p>Сначала запустите CLI с параметрами <code>--format json --output reports/report.json</code>, затем выберите полученный файл.</p><label class="upload-btn">Выбрать JSON<input id="emptyFile" type="file" accept=".json,application/json"></label></section>
+    <section id="dashboard" hidden>
+      <div class="report-meta"><span class="file-dot"></span><span id="reportName">Отчёт загружен</span><span class="muted" id="generatedAt"></span></div>
+      <div class="stats-grid">
+        <article class="stat-card"><div class="stat-label">Всего строк <span>↗</span></div><div class="stat-value" id="totalLines">0</div><div class="stat-foot">Строк прочитано</div></article>
+        <article class="stat-card"><div class="stat-label">Корректные <span class="green">✓</span></div><div class="stat-value" id="validLines">0</div><div class="stat-foot">Успешно разобраны</div></article>
+        <article class="stat-card"><div class="stat-label">Повреждённые <span class="red">!</span></div><div class="stat-value" id="invalidLines">0</div><div class="stat-foot">С указанием номера строки</div></article>
+        <article class="stat-card"><div class="stat-label">После фильтров <span class="purple">⌁</span></div><div class="stat-value" id="matchedEvents">0</div><div class="stat-foot">Подходящих событий</div></article>
+      </div>
+      <div class="charts-grid">
+        <article class="panel"><div class="panel-head"><div><h3>События по уровням</h3><p>Распределение выбранного отчёта</p></div><span class="panel-icon">◔</span></div><div class="chart-wrap"><canvas id="levelChart"></canvas></div></article>
+        <article class="panel"><div class="panel-head"><div><h3>Источники событий</h3><p>Частота по компонентам</p></div><span class="panel-icon">⌘</span></div><div class="chart-wrap"><canvas id="sourceChart"></canvas></div></article>
+      </div>
+      <div class="lower-grid">
+        <article class="panel" id="errors"><div class="panel-head"><div><h3>Частые коды ошибок</h3><p>Top-N по уровню ERROR</p></div><span class="pill danger">ERROR</span></div><div id="topErrors" class="ranking"></div></article>
+        <article class="panel"><div class="panel-head"><div><h3>Проверка качества</h3><p>Строки, требующие внимания</p></div></div><div class="quality" id="quality"></div><div class="invalid-list" id="invalidList"></div></article>
+      </div>
+      <article class="panel events-panel" id="events"><div class="panel-head"><div><h3>Примеры событий</h3><p>В отчёте сохранены первые 100 подходящих записей</p></div><input id="searchEvents" class="search" placeholder="Поиск по событиям…"></div><div class="table-scroll"><table><thead><tr><th>ВРЕМЯ UTC</th><th>УРОВЕНЬ</th><th>ИСТОЧНИК</th><th>КОД</th><th>СООБЩЕНИЕ</th></tr></thead><tbody id="eventRows"></tbody></table></div><div class="table-foot" id="tableFoot"></div></article>
+      <footer>EventScope <span>•</span> Отчёт построен CLI-анализатором · Данные обрабатываются локально</footer>
+    </section>
+  </main>
+  <div class="toast" id="toast"></div>
+</body>
+</html>

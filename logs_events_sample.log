@@ -1,0 +1,10 @@
+2025-01-15T10:20:30Z | ERROR | api | DB_TIMEOUT | Database request timed out
+2025-01-15T10:20:31Z | INFO | web | PAGE_LOADED | Dashboard opened
+2025-01-15T10:20:32Z | ERROR | api | DB_TIMEOUT | Retry failed
+2025-01-15T10:20:33Z | WARN | worker | QUEUE_DELAY | Queue processing delayed
+2025-01-15T10:20:34Z | DEBUG | api | CACHE_MISS | Cache key not found
+this is an intentionally damaged row
+2025-01-15T10:20:36Z | ERROR | auth | AUTH_DENIED | Token rejected
+2025-02-30T10:20:37Z | INFO | web | BAD_DATE | Impossible date
+2025-01-15T10:20:38Z | TRACE | worker | TASK_START | Task started
+2025-01-15T10:20:39Z | FATAL | api | BAD_LEVEL | Invalid level
